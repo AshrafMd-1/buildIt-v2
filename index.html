@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>BuildIt Submitter</title>
 </head>
@@ -9,7 +9,7 @@
 <div class="container">
     <div class="input header">
         <div class="Loading">
-            <div id="loading-progress" class="Loading-progress">
+            <div class="Loading-progress" id="loading-progress">
             </div>
         </div>
         <h1>BuildIt Submitter</h1>
@@ -17,15 +17,15 @@
     </div>
     <div class="input body">
         <label for="lang">Language</label>
-        <select id="lang" class="no-opacity"></select>
+        <select class="no-opacity" id="lang"></select>
         <label for="level">Level</label>
-        <select id="level" class="no-opacity"></select>
+        <select class="no-opacity" id="level"></select>
         <label for="question">Question</label>
-        <select id="question" class="no-opacity"></select>
+        <select class="no-opacity" id="question"></select>
         <label for="read">Problem Statement</label>
-        <div id="read" class="no-opacity"></div>
+        <div class="no-opacity" id="read"></div>
         <label for="answer">Answer</label>
-        <textarea id="answer" class="no-opacity"></textarea>
+        <textarea class="no-opacity" id="answer"></textarea>
     </div>
     <div class="input submit">
         <button id="submit">Submit</button>
