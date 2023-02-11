@@ -2,4 +2,4 @@
 
 A buildIt helper website where it automatically gives you the correct code
 
-##use for reference purposes only
+## use for reference purposes only
