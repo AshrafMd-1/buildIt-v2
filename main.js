@@ -7,9 +7,7 @@ const submitEl = document.getElementById("submit");
 const loadingEl = document.getElementById("loading-progress");
 
 
-let lang = [];
-let level = [];
-let question = [];
+
 
 const baseUrl = `https://2is3lu.deta.dev/api/buildit/`
 const updateLang = () => {
@@ -18,7 +16,7 @@ const updateLang = () => {
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
-                lang = data.data;
+
                 const langOption = data.data.map((lang) => {
                     return `<option value="${lang[1]}">${lang[0]}</option>`;
                 })
@@ -53,7 +51,6 @@ langEl.addEventListener("change", () => {
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
-                level = data.data;
 
                 let levelOption = data.data.map((level) => {
                     return `<option value="${level[1]}">${level[0]}</option>`;
@@ -77,7 +74,6 @@ levelEl.addEventListener("change", () => {
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
-                question = data.data;
 
                 let questionOption = data.data.map((question) => {
                     return `<option style="background-color:${question[2].split(" ")[1]}" value="${question[1]}">${question[0]}</option>`;
@@ -121,8 +117,8 @@ questionEl.addEventListener("change", () => {
         .then((data) => {
 
             if (data.status === "success") {
-                let read = data.data;
-                readEl.innerHTML = read.join("&nbsp;")
+
+                readEl.innerHTML = data.data.join("&nbsp;")
                 readEl.classList.add("fade-in");
                 readEl.classList.remove("no-opacity");
                 updateAnswer()
