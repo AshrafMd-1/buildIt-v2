@@ -8,13 +8,14 @@
 <body>
 <div class="container">
     <div class="input header">
-        <div class="Loading">
-            <div class="Loading-progress" id="loading-progress">
-            </div>
-        </div>
+
         <h1>BuildIt Submitter</h1>
         <p>Submit your BuildIt questions and answers here!</p>
     </div>
+    <div class="Loading">
+            <div class="Loading-progress"  id="Loading-progress">
+            </div>
+        </div>
     <div class="input body">
         <label for="lang">Language</label>
         <select class="no-opacity" id="lang"></select>
@@ -25,10 +26,11 @@
         <label for="read">Problem Statement</label>
         <div class="no-opacity" id="read"></div>
         <label for="answer">Answer</label>
-        <textarea class="no-opacity" id="answer"></textarea>
+        <div class="no-opacity" id="answer"></div>
     </div>
     <div class="input submit">
         <button id="submit">Submit</button>
+
     </div>
 </div>
 <script src="main.js"></script>
