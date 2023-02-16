@@ -7,12 +7,12 @@ const submitEl = document.getElementById("home");
 const loadingEl = document.getElementById("Loading-progress");
 
 
-
-
-const baseUrl = `https://2is3lu.deta.dev/api/buildit/`
+const baseUrl = `https://scrapbit-1-b5725673.deta.app`
 const updateLang = () => {
-    const url = baseUrl + 'compiler'
-    fetch(url)
+    const url = baseUrl + '/compiler'
+    fetch(url, {
+        method: "POST",
+    })
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
@@ -26,34 +26,27 @@ const updateLang = () => {
                 langEl.classList.add("fade-in");
                 langEl.classList.remove("no-opacity");
 
+            } else {
+                window.location.href = "../login/login.html"
             }
         }).catch((error) => {
         console.log(error);
     });
 }
-const checkLogin = () => {
-    const url = baseUrl + "login/?username=21951a6636&password=omsairam@7"
-    fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.status === "success") {
-                updateLang();
-            }
-        }).catch((error) => {
-        console.log(error);
-    })
-};
 
 langEl.addEventListener("change", () => {
-    levelEl.innerHTML="<option value='' disabled selected>Select Level</option>"
-    questionEl.innerHTML="<option value='' disabled selected>Select Question</option>"
-    readEl.innerHTML=`<p style="color:#ff3972">Select The Question</p>`
-    answerEl.innerText="No Question Selected"
-    answerEl.style.color="#ff3972"
+    levelEl.innerHTML = "<option value='' disabled selected>Select Level</option>"
+    questionEl.innerHTML = "<option value='' disabled selected>Select Question</option>"
+    readEl.innerHTML = `<p style="color:#ff3972">Select The Question</p>`
+    answerEl.innerText = "No Question Selected"
+    answerEl.style.color = "#ff3972"
     loadingEl.classList.remove("no-opacity");
     const langValue = langEl.value;
-    const url = baseUrl + "level?user_compiler=" + langValue;
-    fetch(url)
+    const url = baseUrl + "/level"
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify({"link": langValue}),
+    })
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
@@ -67,6 +60,8 @@ langEl.addEventListener("change", () => {
                 levelEl.classList.add("fade-in");
                 levelEl.classList.remove("no-opacity");
 
+            } else {
+                window.location.href = "../login/login.html"
             }
         })
         .catch((error) => {
@@ -75,14 +70,17 @@ langEl.addEventListener("change", () => {
 })
 
 levelEl.addEventListener("change", () => {
-    questionEl.innerHTML="<option value='' disabled selected>Select Question</option>"
-    readEl.innerHTML=`<p style="color:#ff3972">Select The Question</p>`
-   answerEl.innerText="No Question Selected"
-    answerEl.style.color="#ff3972"
+    questionEl.innerHTML = "<option value='' disabled selected>Select Question</option>"
+    readEl.innerHTML = `<p style="color:#ff3972">Select The Question</p>`
+    answerEl.innerText = "No Question Selected"
+    answerEl.style.color = "#ff3972"
     loadingEl.classList.remove("no-opacity");
     const levelValue = levelEl.value;
-    const url = baseUrl + "question?user_level=" + levelValue
-    fetch(url)
+    const url = baseUrl + "/question"
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify({"link": levelValue}),
+    })
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
@@ -95,7 +93,9 @@ levelEl.addEventListener("change", () => {
                 loadingEl.classList.add("no-opacity");
                 questionEl.classList.add("fade-in");
                 questionEl.classList.remove("no-opacity");
-            } else console.log(data.status)
+            } else {
+                window.location.href = "../login/login.html"
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -104,13 +104,16 @@ levelEl.addEventListener("change", () => {
 
 const updateAnswer = () => {
     const questionValue = questionEl.value;
-    const comp=langEl[langEl.selectedIndex].textContent
-    const url = baseUrl + "answer?user_question=" + questionValue+"&user_compiler="+comp
-    fetch(url)
+    const comp = langEl[langEl.selectedIndex].textContent
+    const url = baseUrl + "/answer"
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify({"compiler": comp, "question": questionValue.split("/").slice(-1)}),
+    })
         .then((response) => response.json())
         .then((data) => {
             if (data.status === "success") {
-                answerEl.style.color="#ffffff"
+                answerEl.style.color = "#ffffff"
                 answerEl.innerHTML = `<div class="answer-box"><span class="answer-value">${data.data}</span></div>`
                 answerEl.classList.add("fade-in");
                 answerEl.classList.remove("no-opacity");
@@ -124,13 +127,16 @@ const updateAnswer = () => {
 }
 
 questionEl.addEventListener("change", () => {
-    readEl.innerHTML=`<p style="color:#ff3972">Select The Question</p>`
-    answerEl.innerText="No Question Selected"
-    answerEl.style.color="#ff3972"
+    readEl.innerHTML = `<p style="color:#ff3972">Select The Question</p>`
+    answerEl.innerText = "No Question Selected"
+    answerEl.style.color = "#ff3972"
     loadingEl.classList.remove("no-opacity");
     const questionValue = questionEl.value;
-    const url = baseUrl + "read?user_question=" + questionValue
-    fetch(url)
+    const url = baseUrl + "/read"
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify({"link": questionValue}),
+    })
         .then((response) => response.json())
         .then((data) => {
 
@@ -138,18 +144,20 @@ questionEl.addEventListener("change", () => {
                 const readOption = data.data.map((read) => {
                     return `<p class="read-value">${read}<p/>`;
                 })
-                readEl.innerHTML =`<div class="read-box">${readOption.join("")}</div>`
+                readEl.innerHTML = `<div class="read-box">${readOption.join("")}</div>`
                 readEl.classList.add("fade-in");
                 readEl.classList.remove("no-opacity");
                 updateAnswer()
 
-            } else console.log(data.status)
+            } else {
+                window.location.href = "../login/login.html"
+            }
         })
         .catch((error) => {
             console.log(error);
         })
 })
 
-checkLogin()
+updateLang()
 
 

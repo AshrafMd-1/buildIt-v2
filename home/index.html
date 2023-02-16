@@ -6,18 +6,6 @@
     <title>BuildIt Submitter</title>
 </head>
 <body>
-<script>
-    fetch("https://scrapbit-1-b5725673.deta.app/chlogin")
-    .then(response => response.json()).then(data => {
-        if (data.status === "success") {
-            console.log("Logged in");
-        } else {
-            console.log("Not logged in");
-            window.location.href = "../login/login.html";
-        }
-    });
-
-</script>
 <div class="container">
     <div class="input header">
 

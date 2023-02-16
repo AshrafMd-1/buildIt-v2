@@ -14,6 +14,10 @@ logEl.addEventListener('click', function (e) {
     e.preventDefault();
     const user = userEl.value;
     const pass = passEl.value;
+    if (user === '' || pass === '') {
+        errEl.innerHTML = 'Please fill all the fields';
+        return;
+    }
     const options = {
         method: 'POST',
         headers: {
