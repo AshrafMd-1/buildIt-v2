@@ -31,7 +31,7 @@ const updateLang = () => {
         console.log(error);
     });
 }
-const login = () => {
+const checkLogin = () => {
   fetch(url + "/login", {
     method: "POST",
     headers: {
