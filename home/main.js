@@ -3,7 +3,7 @@ const levelEl = document.getElementById("level");
 const questionEl = document.getElementById("question");
 const readEl = document.getElementById("read");
 const answerEl = document.getElementById("answer");
-const submitEl = document.getElementById("submit");
+const submitEl = document.getElementById("home");
 const loadingEl = document.getElementById("Loading-progress");
 
 
@@ -32,7 +32,7 @@ const updateLang = () => {
     });
 }
 const checkLogin = () => {
-    const url = baseUrl + "login?username=21951a6636&password=omsairam@7"
+    const url = baseUrl + "login/?username=21951a6636&password=omsairam@7"
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
