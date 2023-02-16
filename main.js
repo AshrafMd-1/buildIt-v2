@@ -9,7 +9,7 @@ const loadingEl = document.getElementById("Loading-progress");
 
 
 
-const baseUrl = `https://2is3lu.deta.dev/api/buildit/`
+const baseUrl = `https://scrapbit-1-b5725673.deta.app`
 const updateLang = () => {
     const url = baseUrl + 'compiler'
     fetch(url)
@@ -31,17 +31,21 @@ const updateLang = () => {
         console.log(error);
     });
 }
-const checkLogin = () => {
-    const url = baseUrl + "login?username=21951a6636&password=omsairam@7"
-    fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.status === "success") {
-                updateLang();
-            }
-        }).catch((error) => {
-        console.log(error);
-    })
+const login = () => {
+  fetch(url + "/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+    "username":"21951A6612",
+    "password":"Ashraf0506$$$$4"
+}),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 };
 
 langEl.addEventListener("change", () => {
