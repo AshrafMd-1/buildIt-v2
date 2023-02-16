@@ -28,7 +28,7 @@ const updateLang = () => {
                 langEl.classList.remove("no-opacity");
 
             } else {
-                window.location.href = "../login/login.html"
+               console.log(data)
             }
         }).catch((error) => {
         console.log(error);
@@ -65,7 +65,7 @@ langEl.addEventListener("change", () => {
                 levelEl.classList.remove("no-opacity");
 
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data)
             }
         })
         .catch((error) => {
@@ -101,7 +101,7 @@ levelEl.addEventListener("change", () => {
                 questionEl.classList.add("fade-in");
                 questionEl.classList.remove("no-opacity");
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data)
             }
         })
         .catch((error) => {
@@ -164,7 +164,7 @@ questionEl.addEventListener("change", () => {
                 updateAnswer()
 
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data)
             }
         })
         .catch((error) => {

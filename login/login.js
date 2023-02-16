@@ -28,6 +28,7 @@ logEl.addEventListener('click', function (e) {
     fetch('https://scrapbit-1-b5725673.deta.app/login', options)
         .then(res => res.json()).then(data => {
         if (data.status === 'success') {
+            localStorage.setItem('username', JSON.stringify(document.cookie));
             window.location.href = '../home/index.html';
         } else {
             errEl.innerHTML = data.message;
