@@ -5,7 +5,7 @@ const logEl = document.getElementById('log');
 const errEl = document.getElementById('status');
 
 window.onload = function () {
-    const x = Math.ceil(Math.random() * 9);
+    const x = Math.ceil(Math.random() * 5);
     imgEl.src = './assets/' + x + '.jpg';
 };
 
