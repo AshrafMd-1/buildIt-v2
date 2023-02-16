@@ -6,12 +6,20 @@ const answerEl = document.getElementById("answer");
 const submitEl = document.getElementById("home");
 const loadingEl = document.getElementById("Loading-progress");
 
+const options = {
+    method: "POST",
 
+    headers: {
+        "Content-Type": "application/json"
+    }
+
+}
 const baseUrl = `https://scrapbit-1-b5725673.deta.app`
 const updateLang = () => {
     const url = baseUrl + '/compiler'
     fetch(url, {
-        method: "POST",
+        method: "POST", credentials: "include", mode: "cors",
+
     })
         .then((response) => response.json())
         .then((data) => {
@@ -27,7 +35,7 @@ const updateLang = () => {
                 langEl.classList.remove("no-opacity");
 
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data.message)
             }
         }).catch((error) => {
         console.log(error);
@@ -44,8 +52,7 @@ langEl.addEventListener("change", () => {
     const langValue = langEl.value;
     const url = baseUrl + "/level"
     fetch(url, {
-        method: "POST",
-        body: JSON.stringify({"link": langValue}),
+        method: "POST", body: JSON.stringify({"link": langValue}), credentials: "include", mode: "cors",
     })
         .then((response) => response.json())
         .then((data) => {
@@ -61,7 +68,7 @@ langEl.addEventListener("change", () => {
                 levelEl.classList.remove("no-opacity");
 
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data.message)
             }
         })
         .catch((error) => {
@@ -78,8 +85,7 @@ levelEl.addEventListener("change", () => {
     const levelValue = levelEl.value;
     const url = baseUrl + "/question"
     fetch(url, {
-        method: "POST",
-        body: JSON.stringify({"link": levelValue}),
+        method: "POST", body: JSON.stringify({"link": levelValue}), credentials: "include", mode: "cors",
     })
         .then((response) => response.json())
         .then((data) => {
@@ -94,7 +100,7 @@ levelEl.addEventListener("change", () => {
                 questionEl.classList.add("fade-in");
                 questionEl.classList.remove("no-opacity");
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data.message)
             }
         })
         .catch((error) => {
@@ -109,6 +115,8 @@ const updateAnswer = () => {
     fetch(url, {
         method: "POST",
         body: JSON.stringify({"compiler": comp, "question": questionValue.split("/").slice(-1)}),
+        credentials: "include",
+        mode: "cors",
     })
         .then((response) => response.json())
         .then((data) => {
@@ -134,8 +142,7 @@ questionEl.addEventListener("change", () => {
     const questionValue = questionEl.value;
     const url = baseUrl + "/read"
     fetch(url, {
-        method: "POST",
-        body: JSON.stringify({"link": questionValue}),
+        method: "POST", body: JSON.stringify({"link": questionValue}), credentials: "include", mode: "cors",
     })
         .then((response) => response.json())
         .then((data) => {
@@ -150,7 +157,7 @@ questionEl.addEventListener("change", () => {
                 updateAnswer()
 
             } else {
-                window.location.href = "../login/login.html"
+                console.log(data.message)
             }
         })
         .catch((error) => {

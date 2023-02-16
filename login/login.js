@@ -20,10 +20,14 @@ logEl.addEventListener('click', function (e) {
     }
     const options = {
         method: 'POST',
+        credentials: 'include',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"username": user, "password": pass})
+        body: JSON.stringify({"username": user, "password": pass}),
+
+
     }
     fetch('https://scrapbit-1-b5725673.deta.app/login', options)
         .then(res => res.json()).then(data => {
