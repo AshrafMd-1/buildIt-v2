@@ -7,7 +7,7 @@ const submitEl = document.getElementById("home");
 const loadingEl = document.getElementById("Loading-progress");
 
 
-const baseUrl = `https://scrapbit-1-b5725673.deta.app`
+const baseUrl = `https://buildit_api-1-a3941880.deta.app/`
 const updateLang = () => {
     const url = baseUrl + '/compiler'
     fetch(url, {

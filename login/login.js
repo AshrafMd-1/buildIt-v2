@@ -25,7 +25,7 @@ logEl.addEventListener('click', function (e) {
 
 
     }
-    fetch('https://scrapbit-1-b5725673.deta.app/login', options)
+    fetch('https://buildit_api-1-a3941880.deta.app/login', options)
         .then(res => res.json()).then(data => {
         if (data.status === 'success') {
             localStorage.setItem('username', JSON.stringify(document.cookie));
