@@ -19,7 +19,7 @@ logEl.addEventListener('click', function (e) {
         return;
     }
     const options = {
-        method: 'POST', credentials: 'include', mode: 'cors', headers: {
+        method: 'POST', headers: {
             'Content-Type': 'application/json'
         }, body: JSON.stringify({"username": user, "password": pass}),
 
