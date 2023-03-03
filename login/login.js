@@ -31,7 +31,7 @@ logEl.addEventListener('click', function (e) {
             localStorage.setItem('username', JSON.stringify(document.cookie));
             window.location.href = '../home/index.html';
         } else {
-            errEl.innerHTML = data.message;
+            console.log(data);
         }
     }).catch(err => {
         errEl.innerHTML = err.message;
